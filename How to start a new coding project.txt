@@ -1,0 +1,75 @@
+First Step: Go through the requirement document and grab all different nouns:
+
+Student
+Assignment
+Status
+Github URL
+Branch
+Email Notification
+Code Reviewer
+Code Review
+Video Recording
+Video Recording URL
+Cohort
+User Account API
+Admin Role
+User
+
+============================================================================
+Second Step: Go through these nouns and try to find which nouns should be an entire class that contain properties and which ones should be a property of another class
+service -> implies that we are not storing this information on database, they just perform an operation
+
+User (class -> Database Table)
+  - role (student role, code reviewer role, admin role)
+  - cohortStartDate
+
+Assignment (class -> Database Table)
+  - status (pending submission, submitted, in review, needs update, completed)
+  - githubUrl
+  - branch
+  - codeReviewVideoUrl
+
+EmailNotificationService (class)
+  - messageBody
+  - subjectLine
+  - toAddress
+  - fromAddress
+
+UserService (class)
+  - createAccount()
+
+============================================================================
+
+Third Step: Establishing the relationships between the classes. we use relational database -> relationships between tables -> relationships between classes is important
+
+Relationships 3 kinds:
+1    to many
+many to many
+1    to 1 (such as user and homeAddress)
+
+
+Services don't have relationships. They are single classes that contain business logic.
+
+1 User can have Many assignments
+1 Assignment can belong to Many users
+
+~~ User(1..*)  Assignment(1..*) ---> many to many *...*  ~~
+
+User(1..*) Assignment(1..1) ---> one to many
+
+
+User (class -> Database Table)
+  - role (student role, code reviewer role, admin role)
+  - cohortStartDate
+  - assignments: List<Assignment>
+
+Assignment (class -> Database Table)
+  - status: String (pending submission, submitted, in review, needs update, completed)
+  - githubUrl: String
+  - branch: String
+  - codeReviewVideoUrl: String
+  - assignedTo: User
+
+
+
+
