@@ -2,7 +2,7 @@ package com.demo.AssignmentSubmission.domain;
 
 import jakarta.persistence.*;
 
-@Entity   //will create table called assignment (based on class name)
+@Entity   // will create table called assignment (based on class name)
 public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
