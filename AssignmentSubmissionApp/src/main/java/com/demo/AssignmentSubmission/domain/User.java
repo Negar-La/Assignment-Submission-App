@@ -2,19 +2,21 @@ package com.demo.AssignmentSubmission.domain;
 
 
 import jakarta.persistence.Entity;
-import org.hibernate.sql.ast.tree.update.Assignment;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity (name = "users")
+@Entity (name = "users")   //because `user` is a reserved word, we use `users` for its table name.
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDate cohortStartDate;
     private String username;
     private String password;
-    private List<Assignment> assignments = new ArrayList<>();
+    //private List<Assignment> assignments = new ArrayList<>();  user is not going to be aware of the assignment.
 
     public long getId() {
         return id;
@@ -46,13 +48,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Assignment> getAssignments() {
-        return assignments;
-    }
-
-    public void setAssignments(List<Assignment> assignments) {
-        this.assignments = assignments;
     }
 }
