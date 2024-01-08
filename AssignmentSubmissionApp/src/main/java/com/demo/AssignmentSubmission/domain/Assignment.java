@@ -1,6 +1,6 @@
 package com.demo.AssignmentSubmission.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity   // will create table called assignment (based on class name)
 public class Assignment {
