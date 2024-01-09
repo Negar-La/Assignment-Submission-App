@@ -3,6 +3,8 @@ package com.demo.AssignmentSubmission.config;
 import com.demo.AssignmentSubmission.filter.JwtFilter;
 import com.demo.AssignmentSubmission.util.CustomPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
@@ -46,9 +48,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             }).and();
 
     http.authorizeRequests()
+            .antMatchers("/api/auth/**").permitAll()
             .anyRequest().authenticated();
 
     http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
 }
