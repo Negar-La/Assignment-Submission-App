@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useLocalStrorage = (defaultValue, key) => {
+  //The initial value of value is determined by a function passed to useState.
   const [value, setValue] = useState(() => {
     const localStorageValue = localStorage.getItem(key);
 
@@ -14,6 +15,7 @@ const useLocalStrorage = (defaultValue, key) => {
     console.log(`Updating local storage ${key} to ${value}`);
   }, [key, value]);
 
+  //The hook returns an array [value, setValue], making it consistent with the standard useState hook.
   return [value, setValue];
 };
 
