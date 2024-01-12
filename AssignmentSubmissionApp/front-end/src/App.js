@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import "./App.css";
 import { useLocalStrorage } from "./util/useLocalStorage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Dashboard from "./Components/Dashboard";
+import Homepage from "./Components/Homepage";
 
 function App() {
   // console.log("hi");
@@ -38,10 +41,12 @@ function App() {
   }, [jwt]);
 
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-      <h2>The value of JWT is {jwt} </h2>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard jwt={jwt} />} />
+        <Route path="/" element={<Homepage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
