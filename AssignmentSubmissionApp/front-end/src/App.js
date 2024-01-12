@@ -1,34 +1,42 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  console.log("hi");
+  // console.log("hi");
+  const [jwt, setJwt] = useState("");
 
-  const reqbody = {
-    username: "ab",
-    password: "abc",
-  };
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(reqbody),
-  };
+  useEffect(() => {
+    const reqbody = {
+      username: "arash",
+      password: "arash",
+    };
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reqbody),
+    };
 
-  fetch("api/auth/login", requestOptions)
-    .then((responce) => Promise.all([responce.json(), responce.headers]))
-    .then(([body, headers]) => {
-      const authValue = headers.get("authorization");
-      console.log(authValue);
-      console.log(body);
-    });
+    fetch("api/auth/login", requestOptions)
+      .then((responce) => Promise.all([responce.json(), responce.headers]))
+      .then(([body, headers]) => {
+        setJwt(headers.get("authorization"));
 
-  // .then((responce) => responce.json())
-  // .then((data) => console.log(data));
+        // const jwt = headers.get("authorization"); was replaced by setJwt
+        // console.log(jwt);
+        // console.log(body);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log("JWT is " + jwt);
+  }, [jwt]);
 
   return (
     <div className="App">
       <h1>Hello World</h1>
+      <h2>The value of JWT is {jwt} </h2>
     </div>
   );
 }
