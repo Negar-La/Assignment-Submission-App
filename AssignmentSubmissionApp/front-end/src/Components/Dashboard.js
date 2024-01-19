@@ -14,8 +14,9 @@ const Dashboard = ({ jwt }) => {
       .then((responce) => {
         if (responce.status === 200) return responce.json();
       })
-      .then((data) => {
-        console.log(data);
+      .then((assignment) => {
+        //  console.log(assignment);
+        window.location.href = `assignments/${assignment.id}`;
       });
   };
 
