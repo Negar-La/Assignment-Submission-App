@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocalStrorage } from "../util/useLocalStorage";
 
 const Login = () => {
-  const [setJwt] = useLocalStrorage("", "jwt");
+  const [jwt, setJwt] = useLocalStrorage("", "jwt");
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
