@@ -10,7 +10,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 function App() {
   // console.log("hi");
   // const [jwt, setJwt] = useState("");   //replaced by useLocalStrorage
-  const [jwt] = useLocalStrorage("", "jwt");
+  const [jwt, setJwt] = useLocalStrorage("", "jwt");
 
   useEffect(() => {
     console.log("JWT is " + jwt);
