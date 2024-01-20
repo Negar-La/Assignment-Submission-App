@@ -1,5 +1,11 @@
 # 📘 Assignment Submission System
 
+<div style="text-align:center;">
+
+**Shout out to [Trevor Page](https://www.youtube.com/watch?v=xuOuzLWQy3A&list=PL2OrQJM8zmZ2-O_rM2Ju9zYMbY8Ta-8I4) for his insightful tutorials, which I closely followed and implemented in this project.**
+
+</div>
+
 A 🌐 web application for submitting and managing assignments.
 
 ## Table of Contents
