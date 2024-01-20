@@ -13,7 +13,7 @@ A 🌐 web application for submitting and managing assignments.
 The _Assignment Submission System_ is a 🌐 web application designed to facilitate the submission and management of assignments. It provides a user-friendly interface for students to submit their assignments and for instructors to review and grade them.
 
 <div align="center">
-  <img src="AssignmentSubmissionApp/front-end/src/3fcj29.gif" alt="Assignment Submission GIF" />
+  <img src="AssignmentSubmissionApp/front-end/src/assignment-gif.gif" alt="Assignment Submission GIF" />
 </div>
 
 ## Features
