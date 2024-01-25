@@ -6,6 +6,7 @@ import Dashboard from "./Components/Dashboard";
 import Homepage from "./Components/Homepage";
 import Login from "./Components/Login";
 import PrivateRoute from "./Components/PrivateRoute";
+import AssignmentView from "./Components/AssignmentView";
 
 function App() {
   // console.log("hi");
@@ -24,6 +25,14 @@ function App() {
           element={
             <PrivateRoute>
               <Dashboard jwt={jwt} />{" "}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="assignments/:id"
+          element={
+            <PrivateRoute>
+              <AssignmentView />
             </PrivateRoute>
           }
         />
