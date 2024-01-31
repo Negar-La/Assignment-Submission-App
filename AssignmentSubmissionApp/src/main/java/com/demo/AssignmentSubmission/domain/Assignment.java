@@ -8,7 +8,7 @@ public class Assignment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String status;
-    private String githubUrl;
+    private String github_url;
     private String branch;
     private String codeReviewVideoUrl;
 @ManyToOne(optional = false)
@@ -33,12 +33,12 @@ public class Assignment {
         this.status = status;
     }
 
-    public String getGithubUrl() {
-        return githubUrl;
+    public String getGithub_url() {
+        return github_url;
     }
 
-    public void setGithubUrl(String githubUrl) {
-        this.githubUrl = githubUrl;
+    public void setGithub_url(String github_url) {
+        this.github_url = github_url;
     }
 
     public String getBranch() {
