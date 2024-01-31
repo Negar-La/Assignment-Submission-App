@@ -3,25 +3,6 @@ import { useParams } from "react-router-dom";
 import { useLocalStrorage } from "../util/useLocalStorage";
 
 function AssignmentView() {
-  // Original object
-  const originalObject = {
-    prop1: "value1",
-    prop2: "value2",
-    nestedObject: {
-      nestedProp: "nestedValue",
-    },
-  };
-
-  // Shallow copy using the spread operator
-  const shallowCopy = { ...originalObject };
-
-  // Modify the shallow copy
-  shallowCopy.prop1 = "modifiedValue";
-  shallowCopy.nestedObject.nestedProp = "modifiedNestedValue";
-
-  console.log(originalObject);
-  console.log(shallowCopy);
-
   const { id } = useParams();
   const [jwt, setJwt] = useLocalStrorage("", "jwt");
   const [assignment, setAssignment] = useState({
@@ -30,6 +11,7 @@ function AssignmentView() {
   });
 
   const updateAssignment = (prop, value) => {
+    // Create a shallow copy of the 'assignment' object using the spread operator (...).
     const newAssignment = { ...assignment };
     newAssignment[prop] = value;
     setAssignment(newAssignment);
