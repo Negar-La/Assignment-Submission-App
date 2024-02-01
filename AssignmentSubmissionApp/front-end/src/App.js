@@ -7,6 +7,7 @@ import Homepage from "./Components/Homepage";
 import Login from "./Components/Login";
 import PrivateRoute from "./Components/PrivateRoute";
 import AssignmentView from "./Components/AssignmentView";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   // console.log("hi");

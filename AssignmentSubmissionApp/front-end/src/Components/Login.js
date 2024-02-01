@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocalStrorage } from "../util/useLocalStorage";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 const Login = () => {
   const [jwt, setJwt] = useLocalStrorage("", "jwt");
@@ -40,32 +41,50 @@ const Login = () => {
 
   return (
     <>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          type="email"
-          id="username"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <button id="submit" type="button" onClick={() => sendLoginRequest()}>
-          Login
-          {/* onClick = {sendLoginRequest()}  will execute/invoke function immediately when the component is rendered */}
-        </button>
-      </div>
+      <Container className="mt-4">
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="username" className="fs-4">
+            Username
+          </Form.Label>
+          <Form.Control
+            type="email"
+            id="username"
+            size="lg"
+            placeholder="john.doe@gmail.com"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="password" className="fs-4">
+            Password
+          </Form.Label>
+          <Form.Control
+            type="password"
+            id="password"
+            size="lg"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </Form.Group>
+
+        <Row className="mt-4">
+          <Col>
+            <Button
+              id="submit"
+              type="button"
+              size="lg"
+              onClick={() => sendLoginRequest()}
+              variant="primary"
+            >
+              Login
+              {/* onClick = {sendLoginRequest()}  will execute/invoke function immediately when the component is rendered */}
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };
