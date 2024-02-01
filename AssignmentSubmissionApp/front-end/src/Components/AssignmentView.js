@@ -25,9 +25,12 @@ function AssignmentView() {
   };
 
   useEffect(() => {
-    ajax(`/api/assignments/${id}`, "GET", jwt).then((assignmentData) =>
-      setAssignment(assignmentData)
-    );
+    ajax(`/api/assignments/${id}`, "GET", jwt).then((assignmentData) => {
+      //  if (assignmentData.branch === null) assignmentData.branch = "";
+      //  if (assignmentData.github_url === null) assignmentData.github_url = "";
+
+      setAssignment(assignmentData);
+    });
   }, []);
 
   return (
@@ -42,7 +45,7 @@ function AssignmentView() {
               type="url"
               id="github_url"
               onChange={(e) => updateAssignment("github_url", e.target.value)}
-              value={assignment.github_url}
+              value={assignment.github_url || ""}
             />{" "}
           </h2>
           <h2>
@@ -51,7 +54,7 @@ function AssignmentView() {
               type="text"
               id="branch"
               onChange={(e) => updateAssignment("branch", e.target.value)}
-              value={assignment.branch}
+              value={assignment.branch || ""}
             />{" "}
           </h2>
           <button onClick={() => handleSubmit()}>Submit Assignment</button>
