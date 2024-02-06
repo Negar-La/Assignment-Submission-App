@@ -42,36 +42,48 @@ const Login = () => {
   return (
     <>
       <Container className="mt-4">
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="username" className="fs-4">
-            Username
-          </Form.Label>
-          <Form.Control
-            type="email"
-            id="username"
-            size="lg"
-            placeholder="john.doe@gmail.com"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </Form.Group>
+        <Row>
+          <Col md="8" lg="6" className="mx-auto">
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="username" className="fs-4">
+                Username
+              </Form.Label>
+              <Form.Control
+                type="email"
+                id="username"
+                size="lg"
+                placeholder="john.doe@gmail.com"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="password" className="fs-4">
-            Password
-          </Form.Label>
-          <Form.Control
-            type="password"
-            id="password"
-            size="lg"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </Form.Group>
+        <Row>
+          <Col md="8" lg="6" className="mx-auto">
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="password" className="fs-4">
+                Password
+              </Form.Label>
+              <Form.Control
+                type="password"
+                id="password"
+                size="lg"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-        <Row className="mt-4">
-          <Col>
+        <Row>
+          <Col
+            md="8"
+            lg="6"
+            className="mt-4 d-flex flex-column gap-5 flex-md-row justify-content-md-between mx-auto"
+          >
             <Button
               id="submit"
               type="button"
@@ -81,6 +93,17 @@ const Login = () => {
             >
               Login
               {/* onClick = {sendLoginRequest()}  will execute/invoke function immediately when the component is rendered */}
+            </Button>
+
+            <Button
+              type="button"
+              size="lg"
+              onClick={() => {
+                window.location.href = "/";
+              }}
+              variant="secondary"
+            >
+              Exit
             </Button>
           </Col>
         </Row>
