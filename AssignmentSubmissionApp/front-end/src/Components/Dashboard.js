@@ -15,7 +15,7 @@ const Dashboard = ({ jwt }) => {
 
   const createAssignmnet = () => {
     ajax("api/assignments", "POST", jwt).then((assignment) => {
-      console.log(assignment);
+      console.log("assignment: ", assignment);
       window.location.href = `assignments/${assignment.id}`;
     });
   };
@@ -41,7 +41,7 @@ const Dashboard = ({ jwt }) => {
 
               <Button
                 onClick={() => {
-                  window.location.href = `/assignments/${assignemnt.id}`;
+                  window.location.href = `assignments/${assignemnt.id}`;
                 }}
               >
                 Edit

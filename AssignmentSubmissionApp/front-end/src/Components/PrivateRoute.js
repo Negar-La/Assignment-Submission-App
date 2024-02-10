@@ -4,11 +4,12 @@ import { Navigate } from "react-router-dom";
 import ajax from "../Services/fetchService";
 
 const PrivateRoute = ({ children }) => {
-  const [jwt] = useLocalStrorage("", "jwt");
+  const [jwt, setJwt] = useLocalStrorage("", "jwt");
   const [isLoading, setIsLoading] = useState(true);
   const [isValid, setIsValid] = useState(null);
+  // console.log("jwt : ", jwt);
   if (jwt) {
-    ajax(`api/auth/validate?token=${jwt}`, "GET", jwt).then((isValid) => {
+    ajax(`/api/auth/validate?token=${jwt}`, "GET", jwt).then((isValid) => {
       setIsValid(isValid);
       setIsLoading(false);
     });

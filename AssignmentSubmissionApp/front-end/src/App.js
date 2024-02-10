@@ -15,7 +15,7 @@ function App() {
   const [jwt, setJwt] = useLocalStrorage("", "jwt");
 
   useEffect(() => {
-    console.log("JWT is " + jwt);
+   // console.log("JWT is " + jwt);
   }, [jwt]);
 
   return (

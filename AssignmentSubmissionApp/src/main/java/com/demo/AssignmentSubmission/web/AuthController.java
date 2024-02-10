@@ -27,7 +27,7 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @PostMapping("login")
+    @PostMapping("login") //when you deal with json rest endpoint, you return ResponseEntity to return response
     public ResponseEntity<?> login(@RequestBody AuthCredentialsRequest req) {
         try {
             Authentication authenticate = authenticationManager
@@ -45,13 +45,14 @@ public class AuthController {
         }
     }
 
+    //localhost:8080/api/auth/validate?token=blahblahblah
     @GetMapping("/validate")
     public ResponseEntity<?> validateToken(@RequestParam String token, @AuthenticationPrincipal User user) {
         try {
-        Boolean isTokenValid = jwtUtil.validateToken(token, user);
-        return ResponseEntity.ok(isTokenValid);
+            Boolean isTokenValid = jwtUtil.validateToken(token, user);
+            return ResponseEntity.ok(isTokenValid);
         } catch (ExpiredJwtException e)  {
-        return ResponseEntity.ok(false);
+            return ResponseEntity.ok(false);
         }
     }
 }
