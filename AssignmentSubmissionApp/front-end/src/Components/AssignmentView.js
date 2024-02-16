@@ -11,6 +11,7 @@ function AssignmentView() {
     branch: '',
     github_url: '',
   });
+  const [assignmentEnums, setAssignmentEnums] = useState([]);
 
   const updateAssignment = (prop, value) => {
     const newAssignment = { ...assignment };
@@ -24,11 +25,12 @@ function AssignmentView() {
   };
 
   useEffect(() => {
-    ajax(`/api/assignments/${id}`, 'GET', jwt).then((assignmentData) => {
-      //  if (assignmentData.branch === null) assignmentData.branch = "";
-      //  if (assignmentData.github_url === null) assignmentData.github_url = "";
-
+    ajax(`/api/assignments/${id}`, 'GET', jwt).then((assignmentResponse) => {
+      let assignmentData = assignmentResponse.assignment;
+      let assignmentEnums = assignmentResponse.assignmentEnums;
       setAssignment(assignmentData);
+      setAssignmentEnums(assignmentEnums);
+      console.log(assignmentEnums);
     });
   }, []);
 
@@ -46,16 +48,16 @@ function AssignmentView() {
         </Col>
       </Row>
 
-      {assignment ? (
+      {assignment && assignmentEnums ? (
         <>
           <Form.Group as={Row} className="my-3" controlId="formPlaintext">
             <Form.Label column sm="3" md="2">
-              Assignment Number:
+              Assignment:
             </Form.Label>
             <Col sm="9" md="8" lg="6">
-              <DropdownButton as={ButtonGroup} id="assignmentName" variant="info" title="number">
-                {['1', '2', '3', '4', '5'].map((assignmentNum) => (
-                  <Dropdown.Item eventKey={assignmentNum}>{assignmentNum}</Dropdown.Item>
+              <DropdownButton as={ButtonGroup} id="assignmentName" variant="info" title="Name">
+                {assignmentEnums.map((assignmentEnum) => (
+                  <Dropdown.Item eventKey={assignmentEnum}>{assignmentEnum}</Dropdown.Item>
                 ))}
               </DropdownButton>
             </Col>
