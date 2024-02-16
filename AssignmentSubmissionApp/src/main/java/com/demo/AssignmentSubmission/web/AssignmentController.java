@@ -2,6 +2,7 @@ package com.demo.AssignmentSubmission.web;
 
 import com.demo.AssignmentSubmission.domain.Assignment;
 import com.demo.AssignmentSubmission.domain.User;
+import com.demo.AssignmentSubmission.dto.AssignmentResponseDto;
 import com.demo.AssignmentSubmission.repository.AssignmentRepository;
 import com.demo.AssignmentSubmission.service.AssignmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,9 @@ public class AssignmentController {
     @GetMapping("{id}")
     public ResponseEntity <?> getAssignment(@PathVariable Long id, @AuthenticationPrincipal User user){
         Optional<Assignment> assignmentOpt = assignmentService.findById(id);
-        return ResponseEntity.ok(assignmentOpt.orElse(new Assignment()));
+
+       AssignmentResponseDto response = new AssignmentResponseDto(assignmentOpt.orElse(new Assignment()));
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("{id}")  //data that we're getting from the frontend : @RequestBody which is a representation of Assignment
