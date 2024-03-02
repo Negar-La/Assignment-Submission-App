@@ -28,11 +28,9 @@ function AssignmentView() {
  
 
   const handleSubmit = () => {
-    console.log(`status is ${assignment.status}`);
     //this implies that the student is submitting the assigment for the first time.
     if (assignment.status === assignmentStasuses[0].toString()) {
       updateAssignment('status', assignmentStasuses[1].toString()); //updates the view
-    //  setAssignment((prevAssignment) => ({ ...prevAssignment, status: assignmentStasuses[1].toString() })); // Update status immediately in the state
     } else {
       persist();
     }
