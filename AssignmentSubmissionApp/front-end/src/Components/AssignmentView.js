@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLocalStrorage } from '../util/useLocalStorage';
 import ajax from '../Services/fetchService';
@@ -16,36 +16,50 @@ function AssignmentView() {
   const [assignmentEnums, setAssignmentEnums] = useState([]);
   const [assignmentStasuses, setAssignmentStatuses] = useState([]);
 
+  const prevAssignmentValue = useRef(assignment);
+
+
   const updateAssignment = (prop, value) => {
     const newAssignment = { ...assignment };
     newAssignment[prop] = value;
     setAssignment(newAssignment);
-    console.log(newAssignment);
   };
+
+ 
 
   const handleSubmit = () => {
     console.log(`status is ${assignment.status}`);
     //this implies that the student is submitting the assigment for the first time.
     if (assignment.status === assignmentStasuses[0].toString()) {
-      updateAssignment('status', assignmentStasuses[1].toString());
-      setAssignment((prevAssignment) => ({ ...prevAssignment, status: assignmentStasuses[1].toString() })); // Update status immediately in the state
+      updateAssignment('status', assignmentStasuses[1].toString()); //updates the view
+    //  setAssignment((prevAssignment) => ({ ...prevAssignment, status: assignmentStasuses[1].toString() })); // Update status immediately in the state
+    } else {
+      persist();
     }
-    ajax(`/api/assignments/${id}`, 'PUT', jwt, assignment).then((assignmentData) => {
-      console.log(assignmentData);
-      //setAssignment(assignmentData);
-    });
   };
+
+  const persist = () =>{
+    ajax(`/api/assignments/${id}`, 'PUT', jwt, assignment).then((assignmentData) => {
+      setAssignment(assignmentData);
+    });
+  }
+
+  useEffect(()=>{
+    if (prevAssignmentValue.current.status !== assignment.status){
+        persist();
+    }; 
+    prevAssignmentValue.current = assignment; //override it
+
+  }, [assignment])
 
   useEffect(() => {
     ajax(`/api/assignments/${id}`, 'GET', jwt).then((assignmentResponse) => {
-      //  console.log(assignmentResponse);
       let assignmentData = assignmentResponse.assignment;
       let assignmentEnums = assignmentResponse.assignmentEnums;
       let assignmentStasuses = assignmentResponse.statusEnums;
       setAssignment(assignmentData);
       setAssignmentEnums(assignmentEnums);
       setAssignmentStatuses(assignmentStasuses);
-      // console.log(assignmentStasuses);
     });
   }, []);
 
